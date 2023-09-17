@@ -1,10 +1,23 @@
-name: Ubuntu
+name: connect
+
 on:
-  watch:
-    types: started
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+      
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  actions: read
+
 jobs:
-  Ubuntu:
+  connect:
+    name: connect
     runs-on: ubuntu-latest
     steps:
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
+      - uses: self-actuated/connect-ssh@master
